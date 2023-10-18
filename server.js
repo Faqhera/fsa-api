@@ -16,7 +16,7 @@ const path = require("path");
 const fs = require ("fs");
 const dotenv = require("dotenv");
 
-const defaultRouter = require("./Routes/defaultRoute");
+const defaultRouter = require("./routes/defaultRoute");
 const bookRouter = require("./routes/bookRoute");
 const productRouter = require("./routes/productRoute");
 
