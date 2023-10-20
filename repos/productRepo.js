@@ -9,7 +9,7 @@ filter = {
  {model: {$regex: search, $options: "i" }},
  {category: {$regex: search, $options: "i" }},
 ],};} 
-return productModel.find(filter, {__v:0, _id:0})
+return productModel.find(filter, {__v:0})
   .sort({[sort]: dir})
     .skip((page - 1) * pageSize)
     .limit(pageSize);

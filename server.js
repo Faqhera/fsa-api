@@ -19,6 +19,7 @@ const dotenv = require("dotenv");
 const defaultRouter = require("./routes/defaultRoute");
 const bookRouter = require("./routes/bookRoute");
 const productRouter = require("./routes/productRoute");
+const reviewRouter = require("./routes/reviewRoute")
 
 const app = express();
 dotenv.config();
@@ -32,15 +33,14 @@ mongoose
 .catch((error)=>{
 console.log(error);
 });
-//Express Middleware Order
+//Express Middleware 
 
 const filePath = path.join(__dirname, "logs", "request.logs");
 const stream = fs.createWriteStream(filePath, {flags: "a"});
 
 app.use(morgan("combined", {stream: stream}));
-
 app.use (bodyParser.json());
-app.use("/", defaultRouter);
+app.use("/", defaultRouter);    
 app.use("/books", bookRouter);                                                      
 app.use("/products", productRouter);
-
+app.use("/reviews", reviewRouter);
