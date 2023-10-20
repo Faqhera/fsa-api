@@ -1,4 +1,5 @@
 const productRepo = require("../repos/productRepo");
+const reviewRepo = require("../repos/reviewRepo");
 const logger = require("../utils/appLogger");
 const getAll = async(req,res) => {
     try{
@@ -33,7 +34,16 @@ const singleProduct = async(req,res) => {
     try{
         const id = req.params.id;
         const product = await productRepo.getById(id);
-        res.status(200).json(product);
+        const reviews = await reviewRepo.getById(id);
+
+        const data ={
+product,
+reviews,
+        };
+        /*const data = product.toJSON();
+        data.reviews = reviews;*/ 
+        
+        res.status(200).json(data);
     } catch (error) {
 console.error(error);
 res.status(500).send("Internal Server Error");

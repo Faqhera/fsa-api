@@ -7,7 +7,13 @@ const create = (date) => {
     const review = new ReviewModel(date);
     return review.save();
 };
+const getById = (id) => {
+return ReviewModel.findOne({productId: id });
+};
+
+
 module.exports = {
     get,
     create,
+    getById,
 }
