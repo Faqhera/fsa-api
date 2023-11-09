@@ -15,6 +15,7 @@ const morgan = require("morgan");
 const path = require("path");
 const fs = require ("fs");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const defaultRouter = require("./routes/defaultRoute");
 const userRouter = require("./routes/userRoute");
@@ -27,6 +28,7 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("server is runnig!"));
+app.use(cors());
 
 mongoose
 .connect("mongodb://127.0.0.1:27017/FSA-API")
@@ -45,6 +47,6 @@ app.use (bodyParser.json());
 app.use("/", defaultRouter); 
 app.use("/users", userRouter);    
 app.use("/books", bookRouter);  
-app.use(auth.tokenAuth);                                                  
+//app.use(auth.tokenAuth);                                                  
 app.use("/products", productRouter);
 app.use("/reviews", reviewRouter);
